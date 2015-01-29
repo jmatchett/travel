@@ -1,0 +1,40 @@
+<!-- 
+	Add additional Query params to our travel application
+	Query param for the welcome message on the homepage
+	Links between the homepage and the about page
+	Link from the about page to the home page would like the homepage to show me a message
+	Secret feature to which more margin can be added by a query param
+	On the homepage at the footer a set of a few different colors which will refresh the page into that colors
+-->
+
+<!-- 
+	look ahead an add a contact page
+-->
+<div class="row">
+	<div class="column small-12">
+		<h1>Travel outside <%= @current_country %></h1>
+		<% if @refer == "about" %>
+			Now that you know a little about me, check out our sweet deals!
+		<% else %>
+			Oh the places you will go
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="column small-12">
+		<ul>
+			<% @countries.each do |country| %>
+				<li><%= country %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+<div class="row">
+	<div class="column small-12">
+		<% @images.each do |city| %>
+			<%= image_tag city + ".jpg", class: "travel-images", alt: city %>
+			<br>
+		<% end %>
+	</div>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="column small-12">
+		<h1>A Little About Me</h1>
+		<p class="fav-color">My favorite color is <%= @color %></p>
+		<p>
+			My shoe size is <%= @shoesize %>.
+			<% if @shoesize >= 12 %>
+				I have HUGE feet!
+			<% end %>
+		</p>
+		<p>Oh the places you will go</p>
+			Homeland: <%= @homeland %> 
+		<br>
+	</div>
+</div>
+
+<div class="row">
+	<div class="column small-12">
+		This is my Family
+		<ul>
+			<% @families.each do |name,relation| %>
+				<li>
+					<%= "#{name} is my #{relation}" %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

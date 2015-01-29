@@ -1,14 +1,82 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Travel</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-</body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  	<style>
+			.travel-images {
+				width: 300px;
+				box-shadow: 1px 1px 2px #CCCCCC;
+			}
+			body {
+				background-color: <%= @mood %>;
+				
+			}
+			.fav-color {
+				color: <%= @color %>;
+			}
+			.column {
+				padding: 0 <%= @crazy %>px;
+			}
+		</style>
+  	<nav class="top-bar" data-topbar="">
+      <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+          <h1>
+            <a href="#">
+              Ninja Travels
+            </a>
+          </h1>
+        </li>
+        <li class="toggle-topbar menu-icon">
+          <a href="../index">
+            <span>menu</span>
+          </a>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="divider"></li>
+          <li class="not-click">
+            <%= link_to "Home", root_path(params.merge(refer: params[:action]).except(:action, :controller)) %>
+          </li>
+          <li class="divider"></li>
+          <li class="not-click">
+            <%= link_to "About", about_path(params.merge(refer: params[:action]).except(:action, :controller)) %>
+          </li>
+          <li class="divider"></li>
+          <li class="not-click">
+            <%= link_to "Contact", contact_path(params.merge(refer: params[:action]).except(:action, :controller)) %>
+          </li>
+        </ul>
+      </section>
+    </nav>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+    <footer>
+    	<div class="row">
+    		<div class="column small-12 text-center">
+    			How are you feeling?
+    		</div>
+    		<div class="column small-3 large-5 small-centered">
+    			<ul class="small-block-grid-3 large-block-grid-3">
+			    	<li class="text-center"><%= link_to "Angry", params.merge(:mood => "red") %></li>
+			    	<li class="text-center"><%= link_to "Sad", params.merge(:mood => "blue") %></li>
+			    	<li class="text-center"><%= link_to "Excited", params.merge(:mood => "orange") %></li>
+    			</ul>
+    		</div>
+    	</div>
+    </footer>
+  </body>
 </html>
